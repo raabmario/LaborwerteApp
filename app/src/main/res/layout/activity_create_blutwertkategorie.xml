@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateBlutwertkategorieActivity">
+
+    <EditText
+        android:id="@+id/editShortcut"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Abkürzung eintragen"
+        app:layout_constraintBottom_toTopOf="@+id/editName"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Name eintragen"
+        app:layout_constraintBottom_toTopOf="@+id/editDescription"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/editDescription"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Beschreibung eintragen"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerAgeGroup"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/editUnit"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="28dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Einheit eintragen"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAddLabValue"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerAgeGroup"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerGender"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerGender"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/editNormRangeLow"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/editNormRangeLow"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="Normbereich Untergrenze eintragen"
+        app:layout_constraintBottom_toTopOf="@+id/editNormRangeUpp"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/editNormRangeUpp"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="Normbereich Obergrenze eintragen"
+        app:layout_constraintBottom_toTopOf="@+id/editUnit"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/buttonAddLabValue"
+        android:layout_width="318dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="41dp"
+        android:text="Kategorie hinzufügen"
+        android:onClick="buttonAddLabValueClicked"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textSc"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginBottom="8dp"
+        android:text="Abkürzung des Blutwerts"
+        app:layout_constraintBottom_toTopOf="@+id/textName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="5dp"
+        android:text="Name des Blutwerts"
+        app:layout_constraintBottom_toTopOf="@+id/textDescription"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textDescription"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="5dp"
+        android:text="Beschreibung des Blutwerts"
+        app:layout_constraintBottom_toTopOf="@+id/textAgeGroup"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textAgeGroup"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="5dp"
+        android:text="Altersgruppe des Normbereichs"
+        app:layout_constraintBottom_toTopOf="@+id/textGender"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textGender"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="5dp"
+        android:text="Geschlecht für Normbereich"
+        app:layout_constraintBottom_toTopOf="@+id/textNormRangeLow"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textNormRangeLow"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="5dp"
+        android:text="Normbereichs Untergrenze"
+        app:layout_constraintBottom_toTopOf="@+id/textNormRangeUpp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textNormRangeUpp"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="5dp"
+        android:text="Normbereichs Obergrenze"
+        app:layout_constraintBottom_toTopOf="@+id/textUnit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textUnit"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="33dp"
+        android:text="Einheit des Blutwertes"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAddLabValue"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textHeadline"
+        android:layout_width="378dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="3dp"
+        android:text="  Neue Blutwertkategorie eintragen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

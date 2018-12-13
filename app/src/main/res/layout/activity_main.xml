@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/toProfileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="toProfileButtonClicked"
+        android:text="Profil"
+        app:layout_constraintBottom_toTopOf="@+id/toBlutwerteAdd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/toBlutwerteAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="toBlutwerteAddClicked"
+        android:text="Blutwerte eintragen"
+        app:layout_constraintBottom_toTopOf="@+id/toDisplayBlutwerte"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toProfileButton" />
+
+    <Button
+        android:id="@+id/toBlutwertkategorienAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="toBlutwertkategorienAddClicked"
+        android:text="Blutwertkategorien\nhinzufügen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toDisplayBlutwerte" />
+
+    <Button
+        android:id="@+id/toDisplayBlutwerte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="toDisplayBlutwerteClicked"
+        android:text="Blutwerte anzeigen"
+        app:layout_constraintBottom_toTopOf="@+id/toBlutwertkategorienAdd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toBlutwerteAdd" />
+
+    <Button
+        android:id="@+id/dBTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
+        android:layout_marginBottom="12dp"
+        android:onClick="dBTestClicked"
+        android:text="DB Test"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>
