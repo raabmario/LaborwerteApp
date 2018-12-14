@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.Cursor;
 import android.content.Context;
 import android.content.ContentValues;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import java.text.ParseException;
@@ -47,6 +48,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public static final String COLUMN_NORMRANGELOW = "normrangelow";
     public static final String COLUMN_NORMRANGEHIGH = "normrangehigh";
     public static final String COLUMN_UNIT = "unit";
+
 
 
     //Konstruktor
@@ -228,6 +230,21 @@ public class MyDBHelper extends SQLiteOpenHelper {
         Cursor d = db.rawQuery("SELECT * FROM "+TABLE_BLUTWERTKATEGORIE+" WHERE ("+COLUMN_AGEGROUP+" = '"+ageGroup+"' AND "+ COLUMN_GENDER+" = '"+gender+"')", null);
 
         return d;
+    }
+
+    public Cursor findApplicableDataEintrag(int UID, String BID){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_EINTRAG+" WHERE ("+COLUMN_EUID+" = '"+UID+"' AND "+ COLUMN_EBID+" = '"+BID+"')", null);
+
+        return c;
+    }
+
+    public Cursor findEintragbyEID(String [] ids){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sqlID_array = TextUtils.join(",", ids);
+        //Cursor c = db.rawQuery("SELECT * FROM " + TABLE_EINTRAG + " WHERE " + COLUMN_EID + " = ?",ids);
+        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_EINTRAG+ " WHERE "+COLUMN_EID+" IN ("+sqlID_array+")",null);
+        return c;
     }
 
 

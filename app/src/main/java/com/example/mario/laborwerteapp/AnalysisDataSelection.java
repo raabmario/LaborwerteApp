@@ -12,6 +12,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class AnalysisDataSelection extends Activity {
 
     Button GrafikAnzeigeButton;
@@ -28,6 +33,7 @@ public class AnalysisDataSelection extends Activity {
 
     int selected_user;
     String beschreibungen;
+    String BID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +78,11 @@ public class AnalysisDataSelection extends Activity {
         }
         String data = buffer.toString();
         beschreibungen = beschreibung_buffer.toString();
+        String ueBID = blutkategorieID_buffer.toString();
 
         final String [] spinnerfiller = data.split("\n");
         final String [] beschreibungs_array = beschreibungen.split("\n");
+        final String [] BID_array = ueBID.split("\n");
 
 
         //Spinner füllen
@@ -88,6 +96,7 @@ public class AnalysisDataSelection extends Activity {
                 //TextView mit Beschreibung der ausgewählten Blutwertkategorie füllen
 
                 Beschreibung.setText("Beschreibung der ausgewählten Blutwertkategorie:\n"+beschreibungs_array[dropdown.getSelectedItemPosition()]);
+                BID = BID_array[dropdown.getSelectedItemPosition()];
 
             }
 
@@ -99,6 +108,7 @@ public class AnalysisDataSelection extends Activity {
     }
 
     public void ListeAnzeigeBtnClicked(View view) {
+        Cursor h = applicableEintrag();
 
     }
 
@@ -111,5 +121,53 @@ public class AnalysisDataSelection extends Activity {
 
     public void toGrafikAnzeige(){
         //intent um auf andere Anzeige zu kommen
+    }
+
+    public Cursor applicableEintrag(){
+
+        Cursor c = dbHelper.findApplicableDataEintrag(selected_user, BID);
+        StringBuffer eintragsID_buffer = new StringBuffer();
+        StringBuffer date_buffer = new StringBuffer();
+        StringBuffer final_datesEIDs = new StringBuffer();
+        if(c.getCount() == 0) {
+
+            c = null;
+        }
+        while (c.moveToNext()){
+            eintragsID_buffer.append(c.getString(0)+"\n");
+            date_buffer.append(c.getString(4)+"\n");
+        }
+
+        String ueEintragsID = eintragsID_buffer.toString();
+        String ueDate = date_buffer.toString();
+
+        final String [] eintragsID_array = ueEintragsID.split("\n");
+        final String [] date_array = ueDate.split("\n");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date datum_von = null;
+        Date datum_bis = null;
+        Date eintrag_datum = null;
+
+        for(int i = 0; i<date_array.length;i++){
+            try{
+                datum_von = sdf.parse(Datum_von.getText().toString());
+                datum_bis = sdf.parse(Datum_bis.getText().toString());
+                eintrag_datum = sdf.parse(date_array[i]);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            if((eintrag_datum.before(datum_bis)||eintrag_datum.equals(datum_bis)) && (eintrag_datum.after(datum_von)||eintrag_datum.equals(datum_von))){
+                final_datesEIDs.append(eintragsID_array[i]+"\n");
+            }
+        }
+        String uefinaldates = final_datesEIDs.toString();
+        final String [] dates2search4byEID = uefinaldates.split("\n");
+
+        Cursor d = dbHelper.findEintragbyEID(dates2search4byEID);
+
+
+
+        return d;
     }
 }
